@@ -3,7 +3,7 @@ layout: about
 title: about
 permalink: /
 # subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
-subtitle: Ph.D. Student in <a href='https://engineering.lehigh.edu/cse'>Lehigh University</a>. 
+subtitle: Ph.D. Student @ <a href='https://engineering.lehigh.edu/cse'>Lehigh University</a>. 
 
 profile:
   align: left
