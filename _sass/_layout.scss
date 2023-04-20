@@ -42,11 +42,11 @@ body.sticky-bottom-footer {
 
 // TODO: redefine publications layout.
 .publications {
-  width: 500;
-  height: 500px;
+  // width: 500px;
+  // height: 500px;
   img {
-    width: auto;
-    height: auto;
+    width: 500px;
+    height: 500px;
     max-width: 100%;
     max-height: 100%
   }
