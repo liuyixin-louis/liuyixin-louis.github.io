@@ -7,7 +7,7 @@ subtitle: Ph.D. Student in <a href='https://engineering.lehigh.edu/cse'>Lehigh U
 
 profile:
   align: left
-  image: prof_pic.jpg
+  image: yixin.jpg
   image_circular: false # crops the image to make it circular
   address: 
   # >
