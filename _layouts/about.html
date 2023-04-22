@@ -58,6 +58,12 @@ layout: default
             {%- include   selected_papers.html %}
           {%- endif %}
 
+          <!-- Selected projects -->
+          {% if page.selected_projects -%}
+            <h2><a href="{{ '/projects/' | relative_url }}" style="color: inherit;">selected projects</a></h2>
+            {%- include projects_horizontal.html %}
+          {%- endif %}
+
           <!-- Social -->
           {%- if page.social %}
             <div class="social">
