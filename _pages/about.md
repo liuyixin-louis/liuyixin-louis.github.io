@@ -21,7 +21,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 selected_projects: true # includes a list of projects marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 # teaching: true  # includes a list of teaching items
-display_categories: [work, fun]
+display_categories: [work]
 horizontal: true
 ---
 
