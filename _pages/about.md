@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: home
 permalink: /
 # subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
 subtitle: Ph.D. Student @ <a href='https://engineering.lehigh.edu/cse'>Lehigh University</a>. 
