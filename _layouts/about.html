@@ -52,17 +52,17 @@ layout: default
             {%- include latest_posts.html %}
           {%- endif %}
 
-          <!-- Selected papers
+          <!-- Selected papers -->
           {% if page.selected_papers -%}
             <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;">selected publications</a></h2>
             {%- include   l %}
-          {%- endif %} -->
+          {%- endif %}
 
           <!-- Selected projects -->
-          {% if page.selected_projects -%}
+          <!-- {% if page.selected_projects -%}
             <h2><a href="{{ '/projects/' | relative_url }}" style="color: inherit;">selected projects</a></h2>
             {%- include   l %}
-          {%- endif %}
+          {%- endif %} -->
 
           <!-- Social -->
           {%- if page.social %}
