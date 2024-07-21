@@ -157,7 +157,9 @@ Previously, I obtained my B.E. of Software Engineering from South China Universi
 
                             <i style="font-size:24px" class="fa">&#xf09b;</i>
                             <a href="https://github.com/liuyixin-louis">[Github]</a>
-
+                            
+                            <i style="font-size:24px" class="fa">&#xf073;</i>
+                            <a href="javascript:void(0);" id="toggleCalendar">[Calendar]</a>
                             <!-- <i style="font-size:24px" class="fa">&#xf081;</i>
                             <a href="https://twitter.com/Haotianxue_GT">[Twitter]</a> -->
 <!-- 
@@ -167,6 +169,9 @@ Previously, I obtained my B.E. of Software Engineering from South China Universi
 
  
 
+                    </div>
+                    <div id="calendarContainer" style="display: none; position: absolute; left: 0; right: 0; background: white; z-index: 1000; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <iframe src="https://calendar.google.com/calendar/embed?src=yila22%40lehigh.edu&ctz=America%2FLos_Angeles" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
                     </div>
             </div>
         </div>
@@ -178,6 +183,9 @@ Previously, I obtained my B.E. of Software Engineering from South China Universi
         <div class="main-bio-container">
             <h5 class="subtitle">News 📢</h5>
             <ul>
+                <li>
+                    <span style="color:#4e613e">[2024.07] </span>  invited Talk at Microsoft on "Adversarial Perturbation in Personalized Diffusion Models".
+                </li>
                 <li>
                     <span style="color:#4e613e">[2024.05] </span>  Our <a href="https://arxiv.org/abs/2311.17983v2" style="color:#22b1bb;font-weight: normal;"><u>FViT</u></a> is accepted by ICML'24! A faithful explaination approach for vision transformer based on denosing diffusion smoothing.
                 </li>
@@ -236,27 +244,30 @@ Previously, I obtained my B.E. of Software Engineering from South China Universi
                 <!-- Large-scale Languag and Diffusion Model -->
             </ul>
 
-            <!-- <h5 class="subtitle" style="margin-top:30px">Research Experience</h5>
-         
-            <ul>
-                <li>[2023-2024]: Start collaborating with Prof. <a href="https://animesh.garg.tech/">Animesh Garg</a>, GaTech, on DM+RL </li>
-                <li>[2023-2024]: Start collaborating with Prof. <a href="https://binhu7.github.io/">Bin Hu</a>, UIUC, on DM+Robustness </li>
-                <li>[2022-Current]: Work as a GRA Ph.D. student at FLAIR lab with Prof. <a href="https://yongxin.ae.gatech.edu/", target="_blank"> Yongxin Chen</a></li>
-                <li>[2022-2023]: Work as a visiting student at MIT CSAIL, advised by <a href="https://scholar.google.com/citations?user=rRJ9wTJMUB8C&hl=zh-CN">Josh Tenenbaum</a>, <a href="https://yunzhuli.github.io/">Yunzhu Li</a> and <a href="https://sfish0101.bitbucket.io/">Fish Tung</a></li>
-                <li>[2021-2021]: Work as a research intern at NLC group, Microsoft Research, advised by Dr. <a href="https://www.microsoft.com/en-us/research/people/lecu/">Lei Cui</a></li>
-                <li>[2021-2022]: Work as a research intern at John Hopcroft Center, advised by Prof. <a href="https://hantek.github.io/">Zhouhan Lin</a> on NLP</li>
-                <li>[2020-2021]: Work as a research intern at John Hopcroft Center, advised by Prof. <a href="https://scholar.google.com/citations?user=YvN-H_0AAAAJ&hl=zh-CN">Quanshi Zhang</a> on XAI</li>
-            </ul> -->
+           
 
+            <script>
+                document.getElementById('toggleCalendar').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var container = document.getElementById('calendarContainer');
+                    var link = this;
+                    if (container.style.display === 'none') {
+                        container.style.display = 'block';
+                        link.textContent = '[Hide Calendar]';
+                    } else {
+                        container.style.display = 'none';
+                        link.textContent = '[Calendar]';
+                    }
+                });
+            </script>
+
+            <h5 class="subtitle" style="margin-top:30px">Reviewer Service</h5> 
+            <!-- <p style="color:#566c7f">#Conference(#Paper Number)</p> -->
+
+            <p style="color:#2271bb">
+                NeurIPS23, KDD23, CVPR24, ICML24, ECCV24, NeurIPS24.
+            </p> 
             
-        <h5 class="subtitle" style="margin-top:30px">Reviewer Service</h5> 
-        <!-- <p style="color:#566c7f">#Conference(#Paper Number)</p> -->
-
-        <p style="color:#2271bb">
-            NeurIPS23, KDD23, CVPR24, ICML24, ECCV24, NeurIPS24.
-        </p> 
-            
-
             
         </div>
     </div>
