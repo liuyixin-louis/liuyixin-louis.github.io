@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <title>XAttnMark: Learning Robust Audio Watermarking with Cross-Attention</title>
+    <meta property="og:image" content="assert/figures/teaser-v1-1.png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/medium-zoom/dist/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+        });
+    </script>
+    <style>
+        .container {
+            max-width: 1400px !important;
+        }
+        .author-block {
+            margin: 20px 0;
+        }
+        .author-name {
+            font-size: 20px;
+            margin: 5px 0;
+            display: inline-block;
+        }
+        .author-name a {
+            text-decoration: none;
+            color: #2a6496;
+        }
+        .author-name a:hover {
+            text-decoration: underline;
+        }
+        .affiliation {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+        }
+        .affiliation-marker {
+            font-size: 14px;
+            color: #666;
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+        .affiliation-marker.last {
+            margin-right: 8px;
+        }
+        .title-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        .authors-list {
+            margin: 5px 0;
+            line-height: 1.4;
+        }
+        .name-explanation {
+            font-size: 16px;
+            color: #666;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .xattnmark {
+            font-style: italic;
+            font-weight: 500;
+        }
+        .equation-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<br>
+    <center>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 offset-md-0">
+                    <h1 style="font-size:36px; margin-bottom:30px">
+                        <img src="assert/figures/sword.png" alt="Crossed Swords" class="title-icon">
+                        <span class="xattnmark">XAttnMark</span>: Learning Robust Audio Watermarking with Cross-Attention<br>
+                        <span style="font-size: 20px; color: #666; font-weight: normal; margin-top: 10px; display: block;">(<u>Cross</u>-<u>Att</u>e<u>n</u>tion Robust Audio Water<u>mark</u>)</span>
+                    </h1>
+                    
+                    <div class="author-block" style="margin: 10px 0;">
+                        <div class="authors-list text-center">
+                            <span class="author-name">
+                                <a href="https://scholar.google.com/citations?user=AJ3ir84AAAAJ&hl=fr">Yixin Liu</a><span class="affiliation-marker">†</span><span class="affiliation-marker last">‡</span>
+                            </span>
+                            <span class="author-name">
+                                <a href="#">Lie Lu</a><span class="affiliation-marker last">‡</span>
+                            </span>
+                            <span class="author-name">
+                                <a href="#">Jihui Jin</a><span class="affiliation-marker last">‡</span>
+                            </span>
+                            <span class="author-name">
+                                <a href="#">Lichao Sun</a><span class="affiliation-marker last">†</span>
+                            </span>
+                            <span class="author-name">
+                                <a href="#">Andrea Fanelli</a><span class="affiliation-marker last">‡</span>
+                            </span>
+                        </div>
+                        
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 text-center">
+                                <div class="affiliation" style="margin-top: 2px;">
+                                    <span class="affiliation-marker">†</span>Lehigh University
+                                    <span style="margin: 0 15px">|</span>
+                                    <span class="affiliation-marker">‡</span>Dolby Laboratories Inc.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <h2>TL;DR (Summary)</h2>
+            <div class="text-center mb-4">
+                <img src="assert/figures/teaser-v1-1.png" class="img-fluid" alt="Teaser Figure" style="max-width: 80%; margin: 20px 0;">
+                <p class="caption">Limitations of previous audio watermarking methods: While AudioSeal achieves good robustness against signal processing attacks, it struggles with generative editing attacks and cannot provide accurate attribution. Our XAttnMark addresses both challenges through cross-attention and temporal conditioning mechanisms.</p>
+            </div>
+            <p>We introduce XAttnMark, a state-of-the-art approach for robust audio watermarking that achieves both reliable detection and accurate attribution through cross-attention and temporal conditioning mechanisms. Our method demonstrates superior robustness against various audio transformations (including challenging generative editing!) while maintaining high perceptual quality.</p>
+
+            <h2>Abstract</h2>
+            <p>The rapid proliferation of generative audio synthesis and editing technologies has raised significant concerns about copyright infringement, data provenance, and the spread of misinformation through deepfake audio. Watermarking offers a proactive solution by embedding imperceptible, identifiable, and traceable marks into audio content. While recent neural network-based watermarking methods like WavMark and AudioSeal have improved robustness and quality, they struggle to achieve both robust detection and accurate attribution simultaneously. This paper introduces Cross-Attention Robust Audio Watermark (XAttnMark), that bridges this gap by leveraging partial parameter sharing between the generator and the detector, a cross-attention mechanism for efficient message retrieval, and a temporal conditioning module for improved message distribution.</p>
+
+            <h2>Method Overview</h2>
+            <div class="text-center">
+                <img src="assert/figures/archs-jan16-1.png" class="img-fluid" alt="System Overview">
+                <p class="caption">System Overview of <span class="xattnmark">XAttnMark</span>. <span class="xattnmark">XAttnMark</span> consists of a watermark generator and a watermark detector, with a shared embedding table that facilitates message decoding through a cross-attention module. In the generator part, we first employ an encoder network to encode the audio latent and then apply a temporal modulation to hide the message. The modulated latent is then fed into a decoder to produce the watermark residual. In the detector part, a linear detection head is used for detecting the presence of watermarks, and a cross-attention module with the shared embedding table is used for message decoding.</p>
+            </div>
+
+            <h2>Audio Examples</h2>
+            
+            <div class="alert alert-info mt-4" role="alert">
+                <i class="fas fa-info-circle"></i> Note: All audio samples are 10 seconds in duration. The watermark remains detectable in all edited versions while maintaining high perceptual quality.
+            </div>
+
+            <h3>Standard Watermarking Examples</h3>
+            <p>Here are examples demonstrating our watermarking system. Each pair consists of an original audio and its watermarked counterpart.</p>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Audio #1</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/ori_1.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h6>Watermarked Audio #1</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/wm_1.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Audio #2</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/ori_2.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h6>Watermarked Audio #2</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/wm_2.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Audio #3</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/ori_3.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h6>Watermarked Audio #3</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/wm_3.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Audio #4</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/ori_4.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h6>Watermarked Audio #4</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/wm_4.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Audio #4</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/ori_4.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h6>Watermarked Audio #5</h6>
+                    <audio controls>
+                        <source src="assert/page-9-audio-samples/wm_5.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Generative Editing Examples</h3>
+            <p>These examples demonstrate the imperceptibility and detectability of our watermark against generative editing. The editing pipeline is shown below:</p>
+            <div class="text-center mb-4">
+                <img src="assert/figures/pipeline-generative-edit.png" class="img-fluid" alt="Generative Editing Pipeline" style="max-width: 100%; margin: 20px 0;">
+                <p class="caption">Overview of our generative editing pipeline for testing watermark robustness.</p>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h6>Original Clean Audio</h6>
+                    <audio controls>
+                        <source src="assert/page-10-gen-edit/ori.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Original Watermarked Audio</h6>
+                    <audio controls>
+                        <source src="assert/page-10-gen-edit/ori.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-md-6">
+                    <h6>After Generative Editing (EDM Style)</h6>
+                    <audio controls>
+                        <source src="assert/page-10-gen-edit/edit-to-EDM.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+
+            <h2>Main Results</h2>
+            
+            <h3>Detection and Attribution Performance</h3>
+            <p>Our method achieves state-of-the-art performance in both detection (99.19% average accuracy) and attribution (93% average accuracy) across various audio transformations. We maintain high detection accuracy even under challenging conditions:</p>
+            <ul>
+                <li>Superior robustness against standard audio edits (99.5% detection for speed changes)</li>
+                <li>Strong performance on neural audio codecs (96.5% detection for EnCodec)</li>
+                <li>Reliable attribution across different user pool sizes (92-94% average accuracy)</li>
+            </ul>
+            <!-- attribution-table -->
+            <div class="text-center">
+                <img src="assert/figures/main-table.png" class="img-fluid" alt="Detection and Attribution Results">
+                <p class="caption">Detection and attribution performance comparison across different watermarking methods. Our approach consistently outperforms baselines in both tasks.</p>
+            </div>
+            <div class="text-center">
+                <img src="assert/figures/attribution-table.png" class="img-fluid" alt="Attribution Accuracy" style="max-width: 100%; margin: 20px 0;">
+                <p class="caption">Attribution accuracy with different number of users, demonstrating scalability of our approach.</p>
+            </div>
+
+            <h3>Robustness Against Standard Audio Edits</h3>
+            <p>XAttnMark demonstrates exceptional robustness across a wide range of audio transformations:</p>
+            <ul>
+                <li>Lossy Compression: Near-perfect performance on MP3 and AAC (98-100% attribution)</li>
+                <li>Frequency Operations: Maintains 97.5-99.5% detection accuracy across different frequency filters</li>
+                <li>Volume Changes: 97.5% detection and 100% attribution for volume adjustments</li>
+            </ul>
+            <div class="text-center">
+                <img src="assert/figures/full-det-table.png" class="img-fluid" alt="Robustness Results Against Standard Audio Edits">
+                <p class="caption">Comprehensive evaluation of robustness against various audio transformations, showing superior performance across different types and strengths of edits.</p>
+            </div>
+            <div class="text-center">
+                <img src="assert/figures/diff-trans-transferability-results.png" class="img-fluid" alt="Robustness Results Against Standard Audio Edits with Different Configurations">
+                <p class="caption">Comprehensive evaluation of robustness against various audio transformations, showing superior performance across different types and strengths of edits.</p>
+            </div>
+
+            <h3>Robustness to Generative Editing</h3>
+            <p>Our method shows remarkable robustness against state-of-the-art generative models:</p>
+            <ul>
+                <li>91-94% detection accuracy with strong editing strength on Stable Audio</li>
+                <li>Consistent 94% accuracy across all editing strengths on AudioLDM2</li>
+                <li>Only method maintaining high performance under strong generative edits</li>
+            </ul>
+            <div class="text-center">
+                <img src="assert/figures/generative-edit-table.png" class="img-fluid" alt="Generative Editing Results" style="max-width: 70%; margin: 20px 0;">
+                <p class="caption">Detection performance under different generative editing strengths using Stable Audio and AudioLDM2.</p>
+            </div>
+
+            <h3>Robustness to Adversarial Attacks</h3>
+            <p>We demonstrate strong resilience against black-box adversarial attacks:</p>
+            <ul>
+                <li>68% detection accuracy under waveform-domain HSJA attacks (vs. 15% for AudioSeal)</li>
+                <li>36% detection accuracy under spectrogram-domain attacks (vs. 15% for AudioSeal)</li>
+                <li>Maintains higher perceptual quality after attacks (PESQ: 2.80 vs. 1.14)</li>
+            </ul>
+            <div class="text-center">
+                <img src="assert/figures/adv-attack.png" class="img-fluid" alt="Adversarial Attack Results" style="max-width: 70%; margin: 20px 0;">
+                <p class="caption">Performance comparison under HSJA-based adversarial attacks in waveform and spectrogram domains.</p>
+            </div>
+
+            <h3>Quality Assessment</h3>
+            <div class="text-center mb-4">
+                <img src="assert/figures/quality.png" class="img-fluid" alt="Quality Assessment Results" style="max-width: 70%; margin: 20px 0;">
+                <p class="caption">Comparison of perceptual quality metrics across different watermarking methods. Our XAttnMark achieves competitive or superior performance across all metrics while maintaining better robustness.</p>
+            </div>
+            <p>Our watermarking approach maintains high perceptual quality while ensuring robust protection:</p>
+            <ul>
+                <li>PESQ Score: 4.43 (competitive with state-of-the-art)</li>
+                <li>STOI Score: 1.000 (best in class)</li>
+                <li>SI-SNR: 29.00 dB</li>
+                <li>Lowest watermark residual loudness: -54.63 dB</li>
+                <li>MUSHRA subjective listening test score: ~91 (comparable to AudioSeal)</li>
+            </ul>
+
+            <h3>Ablation Studies</h3>
+            <p>Key architectural components contribute significantly to performance:</p>
+            <ul>
+                <li>Cross-attention mechanism is crucial for message retrieval</li>
+                <li>Temporal modulation improves message hiding capabilities</li>
+                <li>Psychoacoustic-aligned TF masking loss enhances imperceptibility</li>
+            </ul>
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="assert/figures/ablation-1.png" class="img-fluid" alt="Ablation Study Results" style="max-width: 100%; margin: 20px 0;">
+                        <p class="caption">Ablation study results showing the impact of each key component: cross-attention mechanism, temporal modulation. </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="assert/figures/attribution_acc_diff_users.png" class="img-fluid" alt="Attribution Accuracy" style="max-width: 100%; margin: 20px 0;">
+                        <p class="caption">Attribution accuracy with different number of users, demonstrating scalability of our approach.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Additional Insights from Extended Analysis</h3>
+            
+            <h4>Architecture Comparison</h4>
+            <p>Our analysis of different architectural choices reveals distinct learning characteristics:</p>
+            <ul>
+                <li>WavMark (fully-shared): Quick initial learning but suffers from destructive interference between detection and decoding tasks</li>
+                <li>AudioSeal (fully-disjoint): Slow convergence in message-bit decoding despite good detection</li>
+                <li>XAttnMark (blended): Achieves optimal balance with steady improvement in both tasks</li>
+            </ul>
+            <div class="text-center">
+                <img src="assert/figures/arch_compare-1.png" class="img-fluid" alt="Architecture Comparison" style="max-width: 100%; margin: 20px 0;">
+                <p class="caption">Training dynamics comparison showing validation accuracy and quality curves for different architectural choices.</p>
+            </div>
+
+            <h4>Speed Reversion Enhancement</h4>
+            <p>We explore a post-hoc speed reversion layer to further improve robustness against speed changes:</p>
+            <p>For a speed-modified audio signal with unknown factor γ, we search for optimal α that maximizes:</p>
+            <div style="margin: 20px 0; text-align: center;">
+                \[
+                r(\alpha) = \frac{1}{L} \sum_{i=1}^{L} \big(p(\alpha) + \bar{s}_{m(\alpha)}\big)
+                \]
+            </div>
+            <p>where \(p(\alpha)\) represents the detection score and \(\bar{s}_{m(\alpha)}\) is the average standard deviation of predicted message bits. The search space is defined as:</p>
+            <div style="margin: 15px 0; text-align: center;">
+                \[
+                \alpha \in \left[\frac{1}{\gamma_{\text{max}}}, \frac{1}{\gamma_{\text{min}}}\right], 
+                \text{ where } \gamma_{\text{min}} = 0.8, \gamma_{\text{max}} = 1.25
+                \]
+            </div>
+            <h5>Main Finding:</h5>
+            <ul>
+                <li>Uses black-box grid search to find optimal speed factor</li>
+                <li>Achieves up to 100% attribution success rate (vs. 0% baseline)</li>
+                <li>Maintains efficient detection time (0.5-0.6s)</li>
+                <li>Zero false positive rate on unwatermarked audio</li>
+            </ul>
+            <div class="text-center">
+                <img src="assert/figures/speed.png" class="img-fluid" alt="Speed Reversion Results" style="max-width: 100%; margin: 20px 0;">
+                <p class="caption">Performance comparison with and without speed reversion layer across different user pool sizes.</p>
+            </div>
+
+            <h4>Dataset Generalization</h4>
+            <p>Our method demonstrates strong generalization across diverse audio domains:</p>
+            <ul>
+                <li>In-distribution: 96-99% detection and 87-93% attribution across music, speech, and general audio</li>
+                <li>Out-of-distribution: 93-99% detection and 86-94% attribution on unseen datasets</li>
+            </ul>
+            <div class="text-center">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <img src="assert/figures/dataset-in.png" class="img-fluid" alt="Dataset Generalization Results" style="max-width: 100%; margin: 20px 0;">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <img src="assert/figures/dataset-out.png" class="img-fluid" alt="Dataset Generalization Results" style="max-width: 100%; margin: 20px 0;">
+                    </div>
+                </div>
+                <p class="caption">Performance comparison across different in-distribution and out-of-distribution datasets, showing strong generalization capabilities.</p>
+            </div>
+
+
+            <h4>Performance Analysis Across Duration and Strength</h4>
+            <p>We analyze the model's performance across different audio durations and watermark strengths:</p>
+            <ul>
+                <li><strong>Duration Impact:</strong>
+                    <ul>
+                        <li>Detection accuracy remains robust (98.6-99.3%) across all durations from 1-10s</li>
+                        <li>Attribution accuracy improves from 81.2% at 1s to peak of 93.0% at 5s</li>
+                        <li>Stable performance (91.5-92.6%) for longer durations</li>
+                    </ul>
+                </li>
+                <li><strong>Watermark Strength Impact:</strong>
+                    <ul>
+                        <li>Weak watermarks (α ≤ 0.3): Limited effectiveness</li>
+                        <li>Moderate watermarks (0.4 ≤ α ≤ 0.7): Balanced performance</li>
+                        <li>Strong watermarks (α ≥ 0.8): Asymptotic performance with >98.3% detection and >92.3% attribution</li>
+                        <li>Default α=1.0 achieves 98.5% detection and 92.7% attribution</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="text-center">
+                <img src="assert/figures/performance_analysis-1.png" class="img-fluid" alt="Performance Analysis Results" style="max-width: 100%; margin: 20px 0;">
+                <p class="caption">Performance analysis across different audio durations and watermark strengths (α), showing optimal configurations for both parameters.</p>
+            </div>
+
+            <h2>Links</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="https://arxiv.org/abs/TODO" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> arXiv</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="https://github.com/TODO" class="btn btn-outline-dark w-100 mb-2"><i class="fab fa-github"></i> Code</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="paper.pdf" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> PDF</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="bibtex.txt" class="btn btn-outline-secondary w-100 mb-2"><i class="fas fa-quote-right"></i> BibTeX</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        mediumZoom('img:not(.title-icon)', {
+            margin: 24,
+            background: 'rgba(0,0,0,0.9)',
+            scrollOffset: 40
+        });
+    });
+</script>
+</html>
