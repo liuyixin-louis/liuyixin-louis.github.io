@@ -168,6 +168,29 @@
         .audio-sample-box:first-of-type {
             margin-bottom: 20px;
         }
+
+        /* Specific styles for the first sample */
+        .sample-pair.horizontal {
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .sample-pair.horizontal .sample-item {
+            flex: 1;
+        }
+
+        /* Responsive adjustment for horizontal layout */
+        @media (max-width: 768px) {
+            .sample-pair.horizontal {
+                flex-direction: column;
+            }
+        }
+
+        /* First sample specific styles */
+        .first-sample {
+            margin-bottom: 20px;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -247,10 +270,10 @@
             <h3>Watermarking Examples</h3>
             <p>Here are examples demonstrating our watermarking system. Each pair consists of an original audio and its watermarked counterpart.</p>
 
-            <!-- First sample always visible -->
-            <div class="audio-sample-box">
+            <!-- First sample always visible with horizontal layout -->
+            <div class="audio-sample-box first-sample">
                 <div class="sample-number">Sample #1</div>
-                <div class="sample-pair">
+                <div class="sample-pair horizontal">
                     <div class="sample-item">
                         <h6>Original Audio</h6>
                         <audio controls>
