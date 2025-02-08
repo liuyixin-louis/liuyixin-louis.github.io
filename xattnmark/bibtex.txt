@@ -1,0 +1,9 @@
+@misc{liu2025xattnmarklearningrobustaudio,
+  title={XAttnMark: Learning Robust Audio Watermarking with Cross-Attention},
+  author={Yixin Liu and Lie Lu and Jihui Jin and Lichao Sun and Andrea Fanelli},
+  year={2025},
+  eprint={2502.04230},
+  archivePrefix={arXiv},
+  primaryClass={cs.SD},
+  url={https://arxiv.org/abs/2502.04230},
+}

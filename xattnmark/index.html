@@ -78,6 +78,119 @@
             margin: 15px 0;
             text-align: center;
         }
+        .audio-samples-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .audio-sample-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .audio-sample-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .sample-number {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .sample-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sample-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .sample-item h6 {
+            margin-bottom: 10px;
+            color: #6c757d;
+        }
+
+        .sample-item audio {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .audio-samples-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .toggle-container {
+            text-align: center;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        #toggleSamples {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #toggleSamples:hover {
+            background-color: #0056b3;
+        }
+
+        .audio-samples-container {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Add margin to first sample box */
+        .audio-sample-box:first-of-type {
+            margin-bottom: 20px;
+        }
+
+        /* Specific styles for the first sample */
+        .sample-pair.horizontal {
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .sample-pair.horizontal .sample-item {
+            flex: 1;
+        }
+
+        /* Responsive adjustment for horizontal layout */
+        @media (max-width: 768px) {
+            .sample-pair.horizontal {
+                flex-direction: column;
+            }
+        }
+
+        /* First sample specific styles */
+        .first-sample {
+            margin-bottom: 20px;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -96,19 +209,19 @@
                     <div class="author-block" style="margin: 10px 0;">
                         <div class="authors-list text-center">
                             <span class="author-name">
-                                <a href="https://scholar.google.com/citations?user=AJ3ir84AAAAJ&hl=fr">Yixin Liu</a><span class="affiliation-marker">†</span><span class="affiliation-marker last">‡</span>
+                                <a href="https://scholar.google.com/citations?user=0GcGHncAAAAJ&hl=en">Yixin Liu</a><span class="affiliation-marker">†</span><span class="affiliation-marker last">‡</span>
                             </span>
                             <span class="author-name">
-                                <a href="#">Lie Lu</a><span class="affiliation-marker last">‡</span>
+                                <a href="https://scholar.google.com/citations?user=EEds7hMAAAAJ&hl=en">Lie Lu</a><span class="affiliation-marker last">‡</span>
                             </span>
                             <span class="author-name">
-                                <a href="#">Jihui Jin</a><span class="affiliation-marker last">‡</span>
+                                <a href="https://www.linkedin.com/in/jihui-jin-4aa111112/">Jihui Jin</a><span class="affiliation-marker last">‡</span>
                             </span>
                             <span class="author-name">
-                                <a href="#">Lichao Sun</a><span class="affiliation-marker last">†</span>
+                                <a href="https://scholar.google.com/citations?user=WhGUE7AAAAAJ&hl=en">Lichao Sun</a><span class="affiliation-marker last">†</span>
                             </span>
                             <span class="author-name">
-                                <a href="#">Andrea Fanelli</a><span class="affiliation-marker last">‡</span>
+                                <a href="https://scholar.google.com/citations?user=KFYb_YAAAAAJ&hl=en">Andrea Fanelli</a><span class="affiliation-marker last">‡</span>
                             </span>
                         </div>
                         
@@ -154,91 +267,137 @@
                 <i class="fas fa-info-circle"></i> Note: All audio samples are 10 seconds in duration. The watermark remains detectable in all edited versions while maintaining high perceptual quality.
             </div>
 
-            <h3>Standard Watermarking Examples</h3>
+            <h3>Watermarking Examples</h3>
             <p>Here are examples demonstrating our watermarking system. Each pair consists of an original audio and its watermarked counterpart.</p>
 
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h6>Original Audio #1</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/ori_1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <div class="col-md-6">
-                    <h6>Watermarked Audio #1</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/wm_1.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h6>Original Audio #2</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/ori_2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <div class="col-md-6">
-                    <h6>Watermarked Audio #2</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/wm_2.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
+            <!-- First sample always visible with horizontal layout -->
+            <div class="audio-sample-box first-sample">
+                <div class="sample-number">Sample #1</div>
+                <div class="sample-pair horizontal">
+                    <div class="sample-item">
+                        <h6>Original Audio</h6>
+                        <audio controls>
+                            <source src="assert/page-9-audio-samples/ori_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="sample-item">
+                        <h6>Watermarked Audio</h6>
+                        <audio controls>
+                            <source src="assert/page-9-audio-samples/wm_1.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
                 </div>
             </div>
 
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h6>Original Audio #3</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/ori_3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
-                <div class="col-md-6">
-                    <h6>Watermarked Audio #3</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/wm_3.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
+            <div class="toggle-container mb-3 mt-4">
+                <button class="btn btn-primary" id="toggleSamples">
+                    <span class="toggle-text">Show More Samples</span>
+                    <span class="toggle-icon">▼</span>
+                </button>
             </div>
 
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h6>Original Audio #4</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/ori_4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
+            <div class="audio-samples-container" id="audioSamplesContainer" style="display: none;">
+                <!-- Samples 2-6 -->
+                <div class="audio-sample-box">
+                    <div class="sample-number">Sample #2</div>
+                    <div class="sample-pair">
+                        <div class="sample-item">
+                            <h6>Original Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/ori_2.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="sample-item">
+                            <h6>Watermarked Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/wm_2.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h6>Watermarked Audio #4</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/wm_4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
+
+                <div class="audio-sample-box">
+                    <div class="sample-number">Sample #3</div>
+                    <div class="sample-pair">
+                        <div class="sample-item">
+                            <h6>Original Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/ori_3.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="sample-item">
+                            <h6>Watermarked Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/wm_3.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <h6>Original Audio #4</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/ori_4.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
+
+                <div class="audio-sample-box">
+                    <div class="sample-number">Sample #4</div>
+                    <div class="sample-pair">
+                        <div class="sample-item">
+                            <h6>Original Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/ori_4.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="sample-item">
+                            <h6>Watermarked Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/wm_4.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h6>Watermarked Audio #5</h6>
-                    <audio controls>
-                        <source src="assert/page-9-audio-samples/wm_5.wav" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
+
+                <div class="audio-sample-box">
+                    <div class="sample-number">Sample #5</div>
+                    <div class="sample-pair">
+                        <div class="sample-item">
+                            <h6>Original Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/ori_5.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="sample-item">
+                            <h6>Watermarked Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/wm_5.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="audio-sample-box">
+                    <div class="sample-number">Sample #6</div>
+                    <div class="sample-pair">
+                        <div class="sample-item">
+                            <h6>Original Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/ori_6.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="sample-item">
+                            <h6>Watermarked Audio</h6>
+                            <audio controls>
+                                <source src="assert/page-9-audio-samples/wm_6.wav" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -458,13 +617,13 @@
             <h2>Links</h2>
             <div class="row">
                 <div class="col-md-3">
-                    <a href="https://arxiv.org/abs/TODO" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> arXiv</a>
+                    <a href="https://arxiv.org/abs/2502.04230" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> arXiv</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="https://github.com/TODO" class="btn btn-outline-dark w-100 mb-2"><i class="fab fa-github"></i> Code</a>
+                    <a href="https://notebooklm.google.com/notebook/210858eb-5473-4ab0-aaff-ef3b11356aeb/audio" class="btn btn-outline-dark w-100 mb-2"><i class="fab fa-github"></i> Podcasts</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="paper.pdf" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <a href="https://arxiv.org/pdf/2502.04230" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> PDF</a>
                 </div>
                 <div class="col-md-3">
                     <a href="bibtex.txt" class="btn btn-outline-secondary w-100 mb-2"><i class="fas fa-quote-right"></i> BibTeX</a>
@@ -483,6 +642,29 @@
             background: 'rgba(0,0,0,0.9)',
             scrollOffset: 40
         });
+    });
+
+    document.getElementById('toggleSamples').addEventListener('click', function() {
+        const container = document.getElementById('audioSamplesContainer');
+        const toggleIcon = this.querySelector('.toggle-icon');
+        const toggleText = this.querySelector('.toggle-text');
+        
+        if (container.style.display === 'none') {
+            container.style.display = 'grid';
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.style.opacity = '1';
+            }, 50);
+            toggleText.textContent = 'Hide Additional Samples';
+            toggleIcon.classList.add('rotated');
+        } else {
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.style.display = 'none';
+            }, 300);
+            toggleText.textContent = 'Show More Samples';
+            toggleIcon.classList.remove('rotated');
+        }
     });
 </script>
 </html>
