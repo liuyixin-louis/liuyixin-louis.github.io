@@ -6,6 +6,7 @@
     <title>XAttnMark: Learning Robust Audio Watermarking with Cross-Attention</title>
     <meta property="og:image" content="assert/figures/teaser-v1-1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/medium-zoom/dist/style.css">
@@ -244,23 +245,37 @@
 
 <div class="container">
     <div class="row">
-        <h2>Links</h2>
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="https://arxiv.org/abs/2502.04230" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> arXiv</a>
-                </div>
-                <div class="col-md-3">
-                    <a href="https://notebooklm.google.com/notebook/210858eb-5473-4ab0-aaff-ef3b11356aeb/audio" class="btn btn-outline-dark w-100 mb-2"><i class="fab fa-github"></i> Podcasts</a>
-                </div>
-                <div class="col-md-3">
-                    <a href="https://arxiv.org/pdf/2502.04230" class="btn btn-outline-primary w-100 mb-2"><i class="fas fa-file-pdf"></i> PDF</a>
-                </div>
-                <div class="col-md-3">
-                    <a href="bibtex.txt" class="btn btn-outline-secondary w-100 mb-2"><i class="fas fa-quote-right"></i> BibTeX</a>
-                </div>
-        </div>
-
         <div class="col-md-10 offset-md-1">
+            <div class="links-container p-4 mb-4" style="background: #f8f9fa; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                <h4 class="mb-3" style="color: #333;"><i class="fas fa-link me-2"></i>Quick Links</h4>
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <a href="https://arxiv.org/abs/2502.04230" class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2" style="border: 1px solid #dee2e6;">
+                            <i class="fas fa-file-alt text-primary"></i>
+                            <span>arXiv</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://notebooklm.google.com/notebook/210858eb-5473-4ab0-aaff-ef3b11356aeb/audio" class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2" style="border: 1px solid #dee2e6;">
+                            <i class="fas fa-headphones text-success"></i>
+                            <span>Podcasts</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://arxiv.org/pdf/2502.04230" class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2" style="border: 1px solid #dee2e6;">
+                            <i class="fas fa-file-pdf text-danger"></i>
+                            <span>PDF</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="bibtex.txt" class="btn btn-light w-100 d-flex align-items-center justify-content-center gap-2" style="border: 1px solid #dee2e6;">
+                            <i class="fas fa-quote-right text-info"></i>
+                            <span>BibTeX</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <h2>TL;DR (Summary)</h2>
             <div class="text-center mb-4">
                 <img src="assert/figures/teaser-v1-1.png" class="img-fluid" alt="Teaser Figure" style="max-width: 80%; margin: 20px 0;">
