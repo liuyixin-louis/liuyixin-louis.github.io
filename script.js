@@ -384,33 +384,8 @@ $(function() {
 });
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const toggleSwitch = document.getElementById('darkModeToggle');
-    if (!toggleSwitch) {
-        console.error('Dark mode toggle switch not found');
-        return;
-    }
-
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            toggleSwitch.checked = true;
-            document.body.style.backgroundColor = '#00FF00'; // Set to green for dark mode
-        } else {
-            document.body.style.backgroundColor = '#00FF00'; // Set to green for light mode
-        }
-    }
-
-    toggleSwitch.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            document.body.style.backgroundColor = '#303030'; // Dark background for dark mode
-            } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            document.body.style.backgroundColor = 'white';
-        }
-    });
+    // Apply dark mode
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    document.body.style.backgroundColor = '#000000';
 });
