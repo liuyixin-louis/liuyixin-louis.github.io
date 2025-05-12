@@ -65,16 +65,16 @@ img.rounded {
 
 a:link
 {
-    color: #941120;
+    color: #000000;
     text-decoration: none;
 }
 a:visited
 {
-    color: #941120;
+    color: #000000;
     text-decoration: none;
 }
 a:hover {
-    color: #941120;
+    color: #333333;
 }
 
 td.dl-link {

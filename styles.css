@@ -71,7 +71,7 @@ a:hover{color:#003d80}
 #main-pub-container .subtitle-aux a.activated {color:#000000}
 #main-pub-container .subtitle-aux a.activated:focus,
 #main-pub-container .subtitle-aux a.activated:hover {text-decoration:none;cursor:initial}
-#main-pub-container .subtitle-aux .note{margin-left:1em;color:#999999;text-decoration:none;font-size:14px}
+#main-pub-container .subtitle-aux .note{margin-left:1em;color:#333333;text-decoration:none;font-size:14px}
 
 #main-pub-card-container{}
 #main-pub-card-container>h5{margin-bottom: 20px}
@@ -85,7 +85,7 @@ a:hover{color:#003d80}
 #main-pub-card-container .pub-card .authors a{color:#555555}
 #main-pub-card-container .pub-card .authors u{color:#000000;font-weight:600;text-decoration:none}
 #main-pub-card-container .pub-card .conference{color:#333333;font-weight:600}
-#main-pub-card-container .pub-card .note{display:block;color:#999999;text-decoration:none;font-size:14px}
+#main-pub-card-container .pub-card .note{display:block;color:#333333;text-decoration:none;font-size:14px}
 #main-pub-card-container .pub-card .info{margin-bottom:0;}
 #main-pub-card-container .row{margin:0}
 #main-pub-card-container .col-l,
