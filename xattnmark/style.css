@@ -18,7 +18,7 @@ h1 {
 #lbl_gallery_input{
     font-family: 'Helvetica', 'Arial', sans-serif;
     text-align: center;
-    color: #000000;
+    color: #fff;
     font-size: 28px;
     display: inline
 }
@@ -27,7 +27,7 @@ h1 {
 #lbl_gallery_comparision{
     font-family: 'Helvetica', 'Arial', sans-serif;
     text-align: center;
-    color: #000000;
+    color: #fff;
     font-size: 28px;
 }
 
@@ -65,16 +65,16 @@ img.rounded {
 
 a:link
 {
-    color: #000000;
+    color: #941120;
     text-decoration: none;
 }
 a:visited
 {
-    color: #000000;
+    color: #941120;
     text-decoration: none;
 }
 a:hover {
-    color: #333333;
+    color: #941120;
 }
 
 td.dl-link {
@@ -186,9 +186,9 @@ text-align: left;
 
 .dark {
     padding: 1em 2em;
-    background-color: #f0f0f0;
-    box-shadow: 3px 3px 3px #cccccc;
-    border: 1px #dddddd;
+    background-color: #333;
+    box-shadow: 3px 3px 3px #333;
+    border: 1px #333;
 }
 .column {
     float: left;
@@ -347,7 +347,7 @@ img {
     left: calc(50% - 256px);
     z-index: 11;
     font-size: 16px;
-    color: #000000;
+    color: #fff;
     margin: 10px;
 }
 .inset-before {
@@ -374,7 +374,7 @@ img {
     right: calc(50% - 256px);
     z-index: 11;
     font-size: 16px;
-    color: #000000;
+    color: #fff;
     margin: 10px;
 }
 .inset-after {
@@ -401,7 +401,7 @@ img {
     left: calc(50% - 256px + 150px + 20px);
     z-index: 11;
     font-size: 16px;
-    color: #000000;
+    color: #fff;
     margin: 10px;
 }
 .inset-target {
@@ -421,16 +421,16 @@ img {
 }
 
 .slider-beforePosition {
-    background: #f0f0f0;
-    color: #000000;
+    background: #121212;
+    color: #fff;
     left: 0;
     pointer-events: none;
     border-radius: 0.2rem;
     padding: 2px 10px;
 }
 .slider-afterPosition {
-    background: #f0f0f0;
-    color: #000000;
+    background: #121212;
+    color: #fff;
     right: 0;
     pointer-events: none;
     border-radius: 0.2rem;
@@ -467,7 +467,7 @@ img {
     top: 50%;
     margin-left: -20px;
     margin-top: -21px;
-    border: 2px solid #333333;
+    border: 2px solid #fff;
     border-radius: 1000px;
     z-index: 20;
     pointer-events: none;
@@ -483,12 +483,12 @@ img {
     margin-top: -6px;
 }
 .handle-left-arrow {
-    border-right: 6px solid #333333;
+    border-right: 6px solid #fff;
     left: 50%;
     margin-left: -17px;
 }
 .handle-right-arrow {
-    border-left: 6px solid #333333;
+    border-left: 6px solid #fff;
     right: 50%;
     margin-right: -17px;
 }
@@ -507,7 +507,7 @@ img {
     content: " ";
     display: block;
     width: 2px;
-    background: #333333;
+    background: #fff;
     height: 9999px;
     position: absolute;
     left: 50%;
@@ -523,7 +523,7 @@ The editing results shown below inversion results
 .edit_labels{
     font-weight:500;
     font-size: 24px;
-    color: #000000;
+    color: #fff;
     height: 20px;
     margin-left: 20px;
     position: relative; 
